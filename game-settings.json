@@ -4,8 +4,8 @@
     "Rows": 8,
 
     "Exit": {
-      "PositionX": 7,
-      "PositionY": 6
+      "PositionX": 6,
+      "PositionY": 7
     }
   },
 
@@ -28,6 +28,21 @@
     {
       "PositionX": 2,
       "PositionY": 3
+    },
+
+    {
+      "PositionX": 1,
+      "PositionY": 6
+    },
+
+    {
+      "PositionX": 6,
+      "PositionY": 5
+    },
+
+    {
+      "PositionX": 3,
+      "PositionY": 4
     }
   ],
 
