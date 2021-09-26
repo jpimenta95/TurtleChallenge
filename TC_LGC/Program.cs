@@ -1,6 +1,7 @@
 ﻿namespace TC_LGC
 {
     using System;
+    using TC_LGC.Constants;
     using TC_LGC.Helpers;
     using TC_LGC.Models;
 
@@ -8,21 +9,21 @@
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello! Welcome to Turtle Challenge. Wait until we load the settings.");
+            Console.WriteLine(TurtleChallengeConstants.Logs.InitialMessage);
 
             GameSettings gameSettings = LoadFilesHelper.LoadGameSettings(args[0]);
             Moves moves = LoadFilesHelper.LoadMovesSettings(args[1]);
 
             Start(gameSettings, moves);
 
-            Console.WriteLine("End game. Press any key to continue.");
+            Console.WriteLine(TurtleChallengeConstants.Logs.GameEnd);
             Console.ReadKey();
 
         }
 
         public static void Start(GameSettings gameSettings, Moves moves)
         {
-            Console.WriteLine("Game started!");
+            Console.WriteLine(TurtleChallengeConstants.Logs.GameStart);
 
             int[,] board = SetBoard(gameSettings);
 
@@ -34,7 +35,7 @@
 
                 if (!PositionHelper.PositionValidation(gameSettings, board, i)) break;
 
-                Console.WriteLine($"Sequence {i}: Success!");
+                Console.WriteLine(string.Format(TurtleChallengeConstants.Logs.Success), i);
             }
         }
 
@@ -50,10 +51,10 @@
         {
             switch (move)
             {
-                case "r":
+                case TurtleChallengeConstants.Moves.Rotation:
                     gameSettings.Turtle.Direction = DirectionHelper.SetNewDirection(gameSettings.Turtle.Direction);
                     break;
-                case "m":
+                case TurtleChallengeConstants.Moves.Move:
                     PositionHelper.SetNewPosition(gameSettings);
                     break;
                 default:
