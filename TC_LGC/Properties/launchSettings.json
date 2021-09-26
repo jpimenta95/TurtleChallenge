@@ -2,7 +2,7 @@
   "profiles": {
     "TC_LGC": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\TurtleChallengeGitHub\\TurtleChallenge\\game-settings.json C:\\TurtleChallengeGitHub\\TurtleChallenge\\moves.json"
+      "commandLineArgs": "game-settings.json moves.json"
     }
   }
 }

@@ -1,36 +1,17 @@
 ﻿namespace TC_LGC
 {
     using System;
-    using System.Collections.Generic;
-    using TC_LGC.Settings;
+    using TC_LGC.Helpers;
+    using TC_LGC.Models;
 
     public class Program
     {
-        private static readonly IDictionary<string, string> _directionDictionary
-            = new Dictionary<string, string>()
-            {
-                { "north", "east" },
-                { "east", "south" },
-                { "south", "west" },
-                { "west", "north" }
-            };
-
-        private static readonly IDictionary<string, int[]> _positionDictionary
-            = new Dictionary<string, int[]>()
-            {
-                { "north", new int[] { 0, 1 } },
-                { "east", new int[] { 1, 0 } },
-                { "south", new int[] { 0, -1 } },
-                { "west", new int[] { -1, 0 } }
-            };
-
-
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello! Welcome to Turtle Challenge. Wait until we load the settings.");
 
-            GameSettings gameSettings = LoadFiles.LoadGameSettings(args[0]);
-            Moves moves = LoadFiles.LoadMovesSettings(args[1]);
+            GameSettings gameSettings = LoadFilesHelper.LoadGameSettings(args[0]);
+            Moves moves = LoadFilesHelper.LoadMovesSettings(args[1]);
 
             Start(gameSettings, moves);
 
@@ -51,7 +32,7 @@
             {
                 MoveTurtle(gameSettings, moves.Sequences[i].Move);
 
-                if (!ContinueInGame(gameSettings, board, i)) break;
+                if (!PositionHelper.PositionValidation(gameSettings, board, i)) break;
 
                 Console.WriteLine($"Sequence {i}: Success!");
             }
@@ -70,59 +51,14 @@
             switch (move)
             {
                 case "r":
-                    gameSettings.Turtle.Direction = SetNewDirection(gameSettings.Turtle.Direction);
+                    gameSettings.Turtle.Direction = DirectionHelper.SetNewDirection(gameSettings.Turtle.Direction);
                     break;
                 case "m":
-                    SetNewPosition(gameSettings);
+                    PositionHelper.SetNewPosition(gameSettings);
                     break;
                 default:
                     break;
             }
-        }
-
-        private static string SetNewDirection(string direction)
-        {
-            return _directionDictionary[direction];
-        }
-
-        private static GameSettings SetNewPosition(GameSettings gameSettings)
-        {
-            int[] changesInPosition = _positionDictionary[gameSettings.Turtle.Direction];
-
-            gameSettings.Turtle.PositionX += changesInPosition[0];
-
-            gameSettings.Turtle.PositionY += changesInPosition[1];
-
-            return gameSettings;
-        }
-
-        private static bool ContinueInGame(GameSettings gameSettings, int[,] board, int sequence)
-        {
-            int[] turtlePosition = new int[] { gameSettings.Turtle.PositionX, gameSettings.Turtle.PositionY };
-
-            if (gameSettings.Board.Exit.PositionX == gameSettings.Turtle.PositionX && gameSettings.Board.Exit.PositionY == gameSettings.Turtle.PositionY)
-            {
-                Console.WriteLine($"Sequence {sequence}: Exit found!");
-                return false;
-            }
-
-            if (gameSettings.Mine.Exists(m => m.PositionX == gameSettings.Turtle.PositionX && m.PositionY == gameSettings.Turtle.PositionY))
-            {
-                Console.WriteLine($"Sequence {sequence}: Mine hit!");
-                return false;
-            }
-
-            try
-            {
-                board.GetValue(turtlePosition);
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine($"Sequence {sequence}: Turtle out of range.");
-                return false;
-            }
-
-            return true;
         }
         #endregion
     }

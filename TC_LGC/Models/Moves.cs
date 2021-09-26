@@ -1,4 +1,4 @@
-﻿namespace TC_LGC.Settings
+﻿namespace TC_LGC.Models
 {
     using System.Collections.Generic;
 
