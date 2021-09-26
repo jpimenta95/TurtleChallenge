@@ -1,0 +1,39 @@
+{
+  "Board": {
+    "Columns": 7,
+    "Rows": 8,
+
+    "Exit": {
+      "PositionX": 7,
+      "PositionY": 6
+    }
+  },
+
+  "Mine": [
+    {
+      "PositionX": 1,
+      "PositionY": 6
+    },
+
+    {
+      "PositionX": 6,
+      "PositionY": 5
+    },
+
+    {
+      "PositionX": 3,
+      "PositionY": 4
+    },
+
+    {
+      "PositionX": 2,
+      "PositionY": 3
+    }
+  ],
+
+  "Turtle": {
+    "PositionX": 0,
+    "PositionY": 0,
+    "Direction": "south"
+  }
+}
