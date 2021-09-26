@@ -5,8 +5,15 @@
     using TC_LGC.Helpers;
     using TC_LGC.Models;
 
+    /// <summary>
+    /// Main class.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Main method.
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             Console.WriteLine(TurtleChallengeConstants.Logs.InitialMessage);
@@ -21,6 +28,11 @@
 
         }
 
+        /// <summary>
+        /// Start method.
+        /// </summary>
+        /// <param name="gameSettings"></param>
+        /// <param name="moves"></param>
         public static void Start(GameSettings gameSettings, Moves moves)
         {
             Console.WriteLine(TurtleChallengeConstants.Logs.GameStart);
@@ -35,11 +47,16 @@
 
                 if (!PositionHelper.PositionValidation(gameSettings, board, i)) break;
 
-                Console.WriteLine(string.Format(TurtleChallengeConstants.Logs.Success), i);
+                Console.WriteLine(string.Format(TurtleChallengeConstants.Logs.Success, i));
             }
         }
 
         #region privates
+        /// <summary>
+        /// Set board array.
+        /// </summary>
+        /// <param name="gameSettings"></param>
+        /// <returns>Multidimentional array</returns>
         private static int[,] SetBoard(GameSettings gameSettings)
         {
             int[,] board = new int[gameSettings.Board.Columns, gameSettings.Board.Rows];
@@ -47,6 +64,11 @@
             return board;
         }
 
+        /// <summary>
+        /// This method calls position and direction helper based on move input
+        /// </summary>
+        /// <param name="gameSettings"></param>
+        /// <param name="move"></param>
         private static void MoveTurtle(GameSettings gameSettings, string move)
         {
             switch (move)

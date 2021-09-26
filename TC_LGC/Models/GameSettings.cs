@@ -2,6 +2,9 @@
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Game Settings model class.
+    /// </summary>
     public class GameSettings
     {
         public BoardSettings Board { get; set; }

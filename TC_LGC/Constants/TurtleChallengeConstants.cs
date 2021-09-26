@@ -1,7 +1,13 @@
 ﻿namespace TC_LGC.Constants
 {
+    /// <summary>
+    /// Constants file of Turtle Challenge project.
+    /// </summary>
     public static class TurtleChallengeConstants
     {
+        /// <summary>
+        /// Constants for directions.
+        /// </summary>
         public class Directions
         {
             public const string North = "north";
@@ -13,6 +19,9 @@
             public const string West = "west";
         }
 
+        /// <summary>
+        /// Constants for moves options.
+        /// </summary>
         public class Moves
         {
             public const string Rotation = "r";
@@ -20,6 +29,9 @@
             public const string Move = "m";
         }
 
+        /// <summary>
+        /// Constants for logs.
+        /// </summary>
         public class Logs
         {
             public const string BaseLog = "Sequence {0}: ";
